@@ -55,23 +55,8 @@ if (numel(pipeline_results) == 2 && isstruct(pipeline_results{1})) || data_combi
         data_sep_in_blocks = struct2cell(pipeline_results{1});
         tmpcfg = [];
         tmpcfg.keepsampleinfo = 'no';
-
-        % In the current dataset all participants have either done 9 or 10
-        % blocks. The distinction needs to be made, as the data_combined
-        % input for ICA in Preprocessing_pipeline_no_interactive is not
-        % sequential because of how the dir function reads file names.
-        if numel(data_sep_in_blocks) == 9
-            data_combined = ft_appenddata(tmpcfg,data_sep_in_blocks{:});
-            clear data_sep_in_blocks
-        elseif numel(data_sep_in_blocks) == 10
-            data_combined = ft_appenddata(tmpcfg,data_sep_in_blocks{1},...
-                data_sep_in_blocks{10},data_sep_in_blocks{2:9});
-            clear data_sep_in_blocks
-        else
-            error("The input pipeline_results contains an erroneous amount " + ...
-                "of blocks for the struct in the first column. Number " + ...
-                "should be either 9 or 10, but is %d",numel(data_sep_in_blocks))
-        end
+data_combined = ft_appenddata(tmpcfg,data_sep_in_blocks{:});
+        clear data_sep_in_blocks
     else
         error("The input pipeline_results contains 2 variables, but the " + ...
             "first variable cannot be identified as a preprocessed data " + ...

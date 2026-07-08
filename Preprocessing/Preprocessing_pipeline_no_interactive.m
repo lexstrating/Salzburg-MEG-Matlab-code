@@ -1,11 +1,11 @@
-function data_no_interactive = Preprocessing_pipeline_no_interactive(cfg,sub)
+function pipeline_results = Preprocessing_pipeline_no_interactive(cfg,sub)
 
 % Reads data from directories and performs a prepared preprocessing 
 % pipeline on the input subjects, and removes channels and trials specified
 % by the user.
 % 
 % use as:
-%   data_no_interactive = Preprocessing_pipeline(cfg, subjects)
+%   pipeline_results = Preprocessing_pipeline(cfg, subjects)
 % 
 % Input arguments:
 % cfg
@@ -18,7 +18,7 @@ function data_no_interactive = Preprocessing_pipeline_no_interactive(cfg,sub)
 %                         the identifier of a subject.
 % 
 % Output:
-% data_no_interactive   = A 2x1 cell of structs containing first the 
+% pipeline_results   = A 3x1 cell of structs containing first the 
 %                         combined processed data of all blocks for the 
 %                         participant, and second the output of independent
 %                         component analysis (ICA)
@@ -60,22 +60,32 @@ subj.datatable  = fullfile(csv_d.folder, csv_d.name);
 d               = dir(fullfile(subj.rawdir, '*.fif'));
 data_blocks     = cell(length(d),1);
 
+file_names = {d.name};
+block_nums_str = regexp(file_names,'(?<=block)[0-9][0-9]?','match');
+block_nums = sort(str2double([block_nums_str{:}]));
+
+sorted_file_names = cell(numel(block_nums),1);
+for ii = 1:numel(block_nums)
+    block_name = append("block",num2str(block_nums(ii)));
+    sorted_file_names{ii} = d(contains({d.name},block_name)).name;
+end
+
 %% Band-pass filtering, defining trials and demeaning for all blocks
-for ii = 1:length(d)
-    fprintf('currently processing block %d of %d \n',ii,length(d));
-    pause(1.2);
-    subj.dataset = fullfile(d(ii).folder, d(ii).name);
+for ii = 1:numel(sorted_file_names)
+    
+    fprintf('currently processing block %d of %d \n',ii,numel(sorted_file_names));
+    subj.dataset = fullfile('..','Data','Raw',sub, sorted_file_names{ii});
 
     % create a bandpass filtered and baseline corrected dataset prior
     % to setting the trials
     tmpcfg = [];
     tmpcfg.dataset      = subj.dataset;
-    tmpcfg.channel      = {'all'};
-    tmpcfg.bpfilter     = 'yes';        % apply bandpass filter
-    tmpcfg.bpfreq       = [0.5 40];     % bandpass filter between 0.5 Hz and 40 Hz
-    tmpcfg.continuous   = 'yes';
-    tmpcfg.bpfilttype   = 'firws';      % to avoid flowover into prestim
-    tmpcfg.bpfiltdir    = 'onepass-reverse-zerophase';
+    % tmpcfg.channel      = {'all'};
+    % tmpcfg.bpfilter     = 'yes';        % apply bandpass filter
+    % tmpcfg.bpfreq       = [0.5 40];     % bandpass filter between 0.5 Hz and 40 Hz
+    % tmpcfg.continuous   = 'yes';
+    % tmpcfg.bpfilttype   = 'firws';      % to avoid flowover into prestim
+    % tmpcfg.bpfiltdir    = 'onepass-reverse-zerophase';
     data_bp             = ft_preprocessing(tmpcfg);
 
     % set the trials
@@ -144,10 +154,10 @@ if numel(block_nums) >= 10
         'this matches the input dataset for ICA.'])
 end
 
-data_no_interactive = cell(2,1);
-data_no_interactive{1} = sep_in_blocks;
+pipeline_results = cell(3,1);
+pipeline_results{1} = sep_in_blocks;
 clear sep_in_blocks
-data_no_interactive{2} = data_comp;
+pipeline_results{2} = data_comp;
 clear data_comp
-data_no_interactive{3} = data_combined;
+pipeline_results{3} = data_combined;
 clear data_combined

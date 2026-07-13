@@ -5,7 +5,7 @@ function MVPA_results = mvpa_pipeline_full_cfg(subjects,category,file,cfg_in,pin
 % from the Pipeline_trialed_preprocessing_concat_blocks.m script.
 % 
 % use as:
-%   MVPA_results = mvpa_pipeline_full_cfg(subjects, category, file, cfg, ping)
+%   MVPA_results = MVPA_PIPELINE_FULL_CFG(subjects, category, file, cfg, ping)
 % 
 % Input arguments:
 % subjects          = cell containing subject names (e.g. {'crpo','mrgu'}).

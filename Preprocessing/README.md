@@ -1,5 +1,9 @@
 ## Preprocessing functions and scripts
 
+- `Pipeline_stimulus_preprocessing.m` A script that runs preprocessing and selects only the stimulus channels. The datasets of each subject are first
+separated into trials, and subsequently combined into a single dataset. This dataset is then checked for artefactual trials (note that these should be
+the same trials as those removed in the dataset from `Preprocessing_pipeline_no_interactive.m` and `Preprocessing_pipeline_interactive.m`). Next, the
+stimulus channels are selected to be kept, the dataset is downsampled from 1000 Hz to 250 Hz, and finally it is separated based on sound category.
 - `Preprocessing_pipeline_interactive.m` A function that contains the interactive elements of the preprocessing and the modifications that follow it.
 In this case the interactive element is the selection of components from Independent Component Analysis (ICA). This function takes the output from
 `Preprocessing_pipeline_no_interactive` and removes selected ICA components, removes faulty channels, downsamples from 1000 Hz to 250 Hz, and separates

@@ -4,7 +4,7 @@ function save_mvpa_statistics(names,MVPA_results)
 % folder with unique names.
 %
 % use as:
-%   save_mvpa_statistics(names,MVPA_results)
+%   SAVE_MVPA_STATISTICS(names,MVPA_results)
 %
 % Input arguments:
 % names             = the unique naming convention for each run of MVPA per

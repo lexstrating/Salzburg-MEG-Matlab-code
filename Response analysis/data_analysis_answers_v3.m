@@ -6,7 +6,7 @@ function answers = data_analysis_answers_v3(subjects,cfg)
 %
 % Use as
 %
-%   [answers] = DATA_ANALYSIS_ANSWERS(subjects,cfg)
+%   [answers] = DATA_ANALYSIS_ANSWERS_V3(subjects,cfg)
 % 
 % The following inputs are read by the function
 %   subjects        = a 1xN string or cell of character vectors
@@ -14,7 +14,7 @@ function answers = data_analysis_answers_v3(subjects,cfg)
 %   cfg.anskey      = a 1x2 string or cell of character vectors
 %                     representing the channel names corresponding to the
 %                     participant answers. (default = {'STI013','STI014'}). 
-%   cfg.soundchan   = a 1x6 string or cell of character vectors representing 
+%   cfg.soundchan   = a 1xN string or cell of character vectors representing 
 %                     the channel names that signal a sound category
 %                     (default: {'STI001','STI002','STI003','STI004', 
 %                     'STI005','STI006'}).

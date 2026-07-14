@@ -10,7 +10,7 @@
 %% Initialize
 % load the answer data of the participants. This should load in a struct
 % named 'answers'.
-load('..','Data','Results','response_statistics.mat');
+load(fullfile('..','Data','Results','response_statistics.mat'));
 
 % initiate an empty struct
 cat_feat = [];

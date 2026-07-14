@@ -120,3 +120,11 @@ if ~isempty(significance_stat)
 else
     MVPA_fig = mv_plot_result(fig_input,time_input);
 end
+
+% add a second black dashed line showing either ping or sound onset time
+% (in this case, 1.16 seconds between both onsets)
+if contains(filename,'ping')
+    xline(-1.16,'--k')
+else
+    xline(1.16,'--k')
+end

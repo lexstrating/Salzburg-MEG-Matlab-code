@@ -3,7 +3,7 @@ This repository contains custom Matlab functions and scripts used for the prepro
 
 It is not recommended to use these functions and scripts outside of their intended purpose nor with data other than that of the aforementioned source. If you wish to make use of one or multiple of these functions and scripts outside of their intended use, it is advised to read through each carefully and adapt where necessary.
 
-These functions and scripts require the Fieldtrip and MVPA-Light toolboxes. Make sure access to these toolboxes is available on your Matlab path.
+These functions and scripts require the Fieldtrip [Oostenveld et al., 2011](https://doi.org/10.1155/2011/156869) and MVPA-Light [Treder, 2020](https://doi.org/10.3389/fnins.2020.00289) toolboxes. Make sure access to these toolboxes is available on your Matlab path.
 
 ## Folders, directories and files
 The functions and scripts available here work under the assumption that directories are available according to the following:

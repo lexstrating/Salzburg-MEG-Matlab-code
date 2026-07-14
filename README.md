@@ -10,6 +10,17 @@ The functions and scripts available here work under the assumption that director
 
 (PROJECT_NAME)
 - Data
+  - Figures
+    - ping_time-locked
+    - sound_time-locked
+      - one_v_one
+      - three_v_three
+        - fig_files
+          - (figure_name).fig
+        - jpg_files
+          - (figure_name).jpg  
+        - svg_files
+          - (figure_name).svg  
   - Processing
     - (sub_name_1)
     - (sub_name_2)

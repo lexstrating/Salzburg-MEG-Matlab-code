@@ -114,17 +114,36 @@ end
 time_input  = stat_result.(result_fieldname{1}).time; 
 
 % Create the figure
-if ~isempty(significance_stat)
-    MVPA_fig = mv_plot_result(fig_input,time_input,'mask',...
-        significance_stat.mask);
-else
-    MVPA_fig = mv_plot_result(fig_input,time_input);
+MVPA_fig = mv_plot_result(fig_input,time_input);
+
+% Instead of marking the line bold where it is significant as is done by
+% specifying the 'mask' key-value pair in mv_plot_result, significance is
+% marked with a line at that location. If no significant cluster is found,
+% no line is provided
+if ~isempty(significance_stat) && ...
+        ~isempty(unique(significance_stat.mask_with_cluster_numbers(...
+        significance_stat.mask_with_cluster_numbers ~= 0)))
+
+    % loop over all unique significant clusters
+    for ii = unique(significance_stat.mask_with_cluster_numbers(...
+            significance_stat.mask_with_cluster_numbers ~= 0))
+        
+        % find the timepoints where the significant cluster is
+        significance_mark = time_input(...
+            significance_stat.mask_with_cluster_numbers == ii);
+        
+        % plot a line
+        plot(significance_mark,(ones(numel(significance_mark),1)*0.7),'-k',...
+            'LineWidth',3)
+    end
 end
 
-% add a second black dashed line showing either ping or sound onset time
-% (in this case, 1.16 seconds between both onsets)
+% add black dashed lines showing the ping and sound onset times (in this 
+% case, 1.16 seconds between both onsets)
 if contains(filename,'ping')
-    xline(-1.16,'--k')
+    xline(-1.16,'--k',{'Sound', 'onset'},'LineWidth',1)
+    xline(0,'--k',{'Ping', 'onset'},'LineWidth',1)
 else
-    xline(1.16,'--k')
+    xline(1.16,'--k',{'Ping', 'onset'},'LineWidth',1)
+    xline(0,'--k',{'Sound', 'onset'},'LineWidth',1)
 end

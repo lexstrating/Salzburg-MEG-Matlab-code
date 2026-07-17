@@ -84,7 +84,7 @@ end
 % the default input of cfg for mv_statistics
 cfg = [];
 cfg.test = 'permutation';
-cfg.n_permutations = 1000;
+cfg.n_permutations = 10000;
 cfg.correctm = 'cluster';   % permutation testing with cluster correction.
 cfg.clusterstatistic = 'maxsum';
 cfg.alpha = 0.05;

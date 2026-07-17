@@ -14,8 +14,8 @@ warning('Default cfg_in for %s timelocked data is being used',ping_name);
 cfg                             = [];
 cfg.method                      = 'mvpa';
 cfg.features                    = 'chan';
-cfg.timwin                      = 24;
-cfg.tstep                       = 3;
+cfg.timwin                      = 24;   % 96 ms
+cfg.tstep                       = 3;    % 12 ms
 cfg.mvpa                        = [];
 cfg.mvpa.classifier             = 'lda';
 cfg.mvpa.metric                 = 'accuracy';

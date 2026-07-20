@@ -42,7 +42,7 @@ arguments
 end
 
 if any(strcmp(subjects,'select'))
-    raw_data_dir        = fullfile('..\Data','Raw');
+    raw_data_dir        = fullfile('..','Data','Raw');
     sub_directory       = dir(raw_data_dir);
     sub_options         = {sub_directory.name};
     select_subject_msg  = "Select subject directories";
@@ -66,7 +66,7 @@ varargout = cell(numel(subjects),1);
 %% First get the subject info
 
 % request the subject name
-raw_data_dir    = fullfile('..\Data','Raw');
+raw_data_dir    = fullfile('..','Data','Raw');
 for sub_num = 1:numel(subjects)
     sub = subjects{sub_num};
 

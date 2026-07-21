@@ -9,10 +9,10 @@ function trl = function_sound_delay(cfg)
 % TRIAL CHANNELS DETAILS
 %   trigger channel:    trigger value:  trigger type:
 %   STI001              1               "objects"
-%   STI002              2               "instruments"
-%   STI003              4               "tools"
-%   STI004              8               "animals"
-%   STI005              16              "emotional"
+%   STI002              2               "animals"
+%   STI003              4               "instruments"
+%   STI004              8               "emotional"
+%   STI005              16              "tools"
 %   STI006              32              "neutral"
 %   STI007              64              "ping"
 %   STI008              128             "trial-start"
@@ -27,7 +27,7 @@ function trl = function_sound_delay(cfg)
 %   STI101              65536           "all_triggers"
 %   SYS201              131072
 %
-% this function requires the following fields
+% this function uses the following fields
 %   cfg.dataset             =   string with the filename
 %   cfg.datatable           =   string with filename of a table containing
 %                               information on the sound category presented
@@ -216,6 +216,9 @@ block_trials = block_nums(blocknum,1):block_nums(blocknum,2);
 
 % preallocate trigger-value category pairs. Column 1 contains category
 % number, column 2 contains associated trigger value.
+% IMPORTANT: category numbers do not correspond to channel number. 
+% Instead, category numbers correspond to the following:
+% 1: objects; 2: instruments; 3: tools; 4: animals; 5: emotional; 6: neutral
 if ~feature
     trigger_category = [1,1;2,4;3,16;4,2;5,8;6,32];
     warning(['This is data from the category task. Please check the .csv ' ...

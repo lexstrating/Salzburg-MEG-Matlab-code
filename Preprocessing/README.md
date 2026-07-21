@@ -1,6 +1,9 @@
 ## Preprocessing functions and scripts
 
-- `Pipeline_stimulus_preprocessing.m` A script that runs preprocessing and selects only the stimulus channels. The datasets of each subject are first
+- `Convert2PingTimelock.m` A function that converts preprocessed data from being time-locked to sound onset to being time-locked to ping onset. Slight
+deviations in the raw data can occur for the initiation of a ping stimulus after sound onset, resulting in skewed perception times and ping registration
+in participants, which this function can take into account.
+-  `Pipeline_stimulus_preprocessing.m` A script that runs preprocessing and selects only the stimulus channels. The datasets of each subject are first
 separated into trials, and subsequently combined into a single dataset. This dataset is then checked for artefactual trials (note that these should be
 the same trials as those removed in the dataset from `Preprocessing_pipeline_no_interactive.m` and `Preprocessing_pipeline_interactive.m`). Next, the
 stimulus channels are selected to be kept, the dataset is downsampled from 1000 Hz to 250 Hz, and finally it is separated based on sound category.
@@ -18,3 +21,8 @@ datasets in order to identify channels and trials that are faulty. The Fieldtrip
 intended to run on the High Performance Computing (HPC) cluster of the Donders Centre for Cognitive Neuroscience (DCCN).
 - `Preprocessing_run_script_noping.m` Same as `Preprocessing_run_script.m` but only for participants without ping stimuli.
 - `Preprocessing_run_script_ping.m` Same as `Preprocessing_run_script.m` but only for participants with ping stimuli.
+- `function_sound_delay.m` A function that interacts with Fieldtrip's ft_definetrial through cfg.trialfun. This function enables the separation of continuous
+data from the study into trials based on sound onset.
+> [WARNING!]
+> It is recommended that the function `function_sound_delay.m` is given an update. As it currently stands it is functional, but contains questionable practices.
+> Functionality and error checks can be updated to make the function more user-friendly, and the checking of sound categories could also be improved.

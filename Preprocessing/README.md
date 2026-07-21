@@ -23,6 +23,6 @@ intended to run on the High Performance Computing (HPC) cluster of the Donders C
 - `Preprocessing_run_script_ping.m` Same as `Preprocessing_run_script.m` but only for participants with ping stimuli.
 - `function_sound_delay.m` A function that interacts with Fieldtrip's ft_definetrial through cfg.trialfun. This function enables the separation of continuous
 data from the study into trials based on sound onset.
-> [WARNING!]
+> [!WARNING]
 > It is recommended that the function `function_sound_delay.m` is given an update. As it currently stands it is functional, but contains questionable practices.
 > Functionality and error checks can be updated to make the function more user-friendly, and the checking of sound categories could also be improved.

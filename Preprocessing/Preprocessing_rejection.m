@@ -3,6 +3,10 @@ function varargout = Preprocessing_rejection(cfg,subjects)
 % Reads data from directories and performs a prepared preprocessing 
 % pipeline on the input subjects, and removes channels and trials specified
 % by the user.
+% This function is only to be used to assess the dataset, and to make note of
+% faulty channels and trials. The outcomes of this function are not intended
+% to be used by any further functions, but rather to allow for the visual
+% inspection of trials and/or channels.
 % 
 % use as:
 %   [data_sub1, data_sub2, ...] = Preprocessing_pipeline(cfg, subjects)
@@ -157,8 +161,9 @@ for sub_num = 1:numel(subjects)
         else
 
             tmpcfg.method = methods{indx};
-            tmpcfg.channel = {'MEG*1','-MEG2211','-MEG0822','-MEG1532'};
-            tmpcfg.keepchannel = 'yes';    % do not use this method to remove channels
+            tmpcfg.channel = {'MEG',cfg.faulty_channels}; % look at all MEG channels
+            tmpcfg.keepchannel = 'no';    % fully remove channels when marked (note that 
+                                          % this will also remove non-MEG channels)
             tmpcfg.keeptrial = 'no';       % fully remove trials when marked
             tmpcfg.layout = 'neuromag306planar.lay';
             data_combined = ft_rejectvisual(tmpcfg,data_combined);

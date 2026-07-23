@@ -52,9 +52,7 @@ if ~isempty(combi_2)
     end
 end
 
-% For one reason or another, Fieldtrip converts the perf and perf_std
-% fields of MVPA into a cell. For use in mv_statistics, perf and perf_std
-% cannot be cells
+% For use in mv_statistics, perf and perf_std cannot be cells
 for ii = 1:numel(stat_combi_1)
 
     if iscell(stat_combi_1{ii}.perf)

@@ -86,8 +86,9 @@ cfg.n_permutations = 100000;
 cfg.correctm = 'cluster';   % permutation testing with cluster correction.
 cfg.clusterstatistic = 'maxsum';
 cfg.alpha = 0.05;
-cfg.clustercritval = 1.96;  % critical z-value for two-sided Wilcoxon 
-                            % sign-rank test at uncorrected p-value of 0.05
+cfg.clustercritval = 1.645; % critical z-value for one-sided Wilcoxon 
+                            % sign-rank test at uncorrected p-value of 
+                            % 0.05
 cfg.statistic = 'wilcoxon';
 cfg.null = 0.5; % null-value for within-subject design with two classes
 if ~isempty(combi_2)

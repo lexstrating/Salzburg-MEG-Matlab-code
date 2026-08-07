@@ -1,12 +1,31 @@
 function MVPA_fig = create_figure(filename,combi_1,combi_2)
-% This function creates a new figure of MVPA results. It takes a file name
-% and subject combinations that will be represented in a figure created by
-% the function MV_PLOT_RESULT from the MVPA-Light toolbox.
+
+% This function creates a new figure of accuracy-over-time MVPA results. It
+% takes a file name and subject combinations that will be represented in a
+% figure created by the function MV_PLOT_RESULT from the MVPA-Light toolbox
+% and automatically asigns indicators for statistical significance through
+% the function SIGNIFICANCE_TESTING.
 % 
 %  use as:
 % 
 %   MVPA_fig = CREATE_FIGURE(filename,combi_1,combi_2)
-% 
+%
+% Input arguments:
+% filename      = single character vector or string scalar of the file name
+%                 present in the relevant results folder for all
+%                 participants.
+% combi_1       = a cell of character vectors or string scalars of the
+%                 participant identifier codes.
+% combi_2       = (optional) a cell of character vectors or string scalars
+%                 of the participant identifier codes.
+%
+% Output:
+% MVPA_fig      = a figure handle to a figure graphically depicting the
+%                 results from the file specified in the variable filename.
+%                 The depicted results have been averaged over the
+%                 participants specified per input combination variable
+%                 (combi_1 and combi_2). Each input combination variable is
+%                 therefore depicted as a single line in the graph.
 
 arguments
     filename {mustBeText}

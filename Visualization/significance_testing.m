@@ -1,6 +1,27 @@
 function significance_stat = significance_testing(filename,combi_1,combi_2)
 
-
+% This function runs a cluster-based permutation statistical test. It takes
+% a file name and subject combinations, and runs a statistical test using 
+% the MV_STATISTICS function from the MVPA-Light toolbox with predetermined
+% settings. 
+% 
+% use as:
+% 
+%   significance_stat = SIGNIFICANCE_TESTING(filename,combi_1,combi_2)
+%
+% Input arguments:
+% filename          = single character vector or string scalar of the file
+%                     name present in the relevant results folder for all
+%                     participants.
+% combi_1           = a cell of character vectors or string scalars of the
+%                     participant identifier codes.
+% combi_2           = (optional) a cell of character vectors or string 
+%                     scalars of the participant identifier codes.
+%
+% Output:
+% significance_stat = the output of MV_STATISTICS run on the files of the 
+%                     input participants with the filename specified in the
+%                     filename variable.
 
 arguments
     filename {mustBeText}
@@ -52,7 +73,8 @@ if ~isempty(combi_2)
     end
 end
 
-% For use in mv_statistics, perf and perf_std cannot be cells
+% For use in mv_statistics, perf and perf_std need to be doubles, not
+% cells
 for ii = 1:numel(stat_combi_1)
 
     if iscell(stat_combi_1{ii}.perf)
